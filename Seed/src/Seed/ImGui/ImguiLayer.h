@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Seed/Layer.h"
+#include "Seed/Core/Layer.h"
 #include "Seed/Events/KeyboardEvent.h"
 #include "Seed/Events/MouseEvent.h"
 #include "Seed/Events/ApplicationEvents.h"

@@ -2,7 +2,7 @@
 
 #include "Seedpch.h"
 
-#include "Seed/Core.h"
+#include "Core.h"
 #include "Seed/Events/Event.h"
 
 namespace Seed {

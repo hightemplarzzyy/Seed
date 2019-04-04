@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Seed/Input.h"
+#include "Seed/Core/Input.h"
 
 namespace Seed {
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "seedpch.h"
-#include "Seed/core.h"
+#include "Seed/Core/core.h"
 
 namespace Seed {
 

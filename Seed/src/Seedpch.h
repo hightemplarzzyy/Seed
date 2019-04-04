@@ -9,7 +9,7 @@
 #include <sstream>
 #include <vector>
 
-#include "Seed/Log.h"
+#include "Seed/Core/Log.h"
 
 #ifdef SEED_PLATFORM_WINDOWS
 	#include <Windows.h>

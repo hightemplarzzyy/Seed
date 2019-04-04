@@ -13,6 +13,9 @@
     <Filter Include="src\Seed">
       <UniqueIdentifier>{7D6D25CF-693A-80DA-9253-6E827E7FB568}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Seed\Core">
+      <UniqueIdentifier>{F5879F77-6148-1BAE-2A83-642B9602608A}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Seed\Events">
       <UniqueIdentifier>{C16AC3E2-2DF6-30A7-3607-B49BA2118DA7}</UniqueIdentifier>
     </Filter>
@@ -51,11 +54,32 @@
     <ClInclude Include="src\Seed.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Seed\Application.h">
-      <Filter>src\Seed</Filter>
+    <ClInclude Include="src\Seed\Core\Application.h">
+      <Filter>src\Seed\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Seed\Core.h">
-      <Filter>src\Seed</Filter>
+    <ClInclude Include="src\Seed\Core\Core.h">
+      <Filter>src\Seed\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Seed\Core\Input.h">
+      <Filter>src\Seed\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Seed\Core\KeyCodes.h">
+      <Filter>src\Seed\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Seed\Core\Layer.h">
+      <Filter>src\Seed\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Seed\Core\LayerStack.h">
+      <Filter>src\Seed\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Seed\Core\Log.h">
+      <Filter>src\Seed\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Seed\Core\MouseButtonCodes.h">
+      <Filter>src\Seed\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Seed\Core\Window.h">
+      <Filter>src\Seed\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Seed\EntryPoint.h">
       <Filter>src\Seed</Filter>
@@ -74,21 +98,6 @@
     </ClInclude>
     <ClInclude Include="src\Seed\ImGui\ImguiLayer.h">
       <Filter>src\Seed\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Seed\Input.h">
-      <Filter>src\Seed</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Seed\Layer.h">
-      <Filter>src\Seed</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Seed\LayerStack.h">
-      <Filter>src\Seed</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Seed\Log.h">
-      <Filter>src\Seed</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Seed\Window.h">
-      <Filter>src\Seed</Filter>
     </ClInclude>
     <ClInclude Include="src\Seedpch.h">
       <Filter>src</Filter>
@@ -1193,23 +1202,23 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Seed\Application.cpp">
-      <Filter>src\Seed</Filter>
+    <ClCompile Include="src\Seed\Core\Application.cpp">
+      <Filter>src\Seed\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Seed\Core\Layer.cpp">
+      <Filter>src\Seed\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Seed\Core\LayerStack.cpp">
+      <Filter>src\Seed\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Seed\Core\Log.cpp">
+      <Filter>src\Seed\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Seed\ImGui\ImguiBuild.cpp">
       <Filter>src\Seed\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Seed\ImGui\ImguiLayer.cpp">
       <Filter>src\Seed\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Seed\Layer.cpp">
-      <Filter>src\Seed</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Seed\LayerStack.cpp">
-      <Filter>src\Seed</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Seed\Log.cpp">
-      <Filter>src\Seed</Filter>
     </ClCompile>
     <ClCompile Include="src\Seedpch.cpp">
       <Filter>src</Filter>

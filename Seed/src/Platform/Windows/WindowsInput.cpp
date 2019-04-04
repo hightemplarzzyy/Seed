@@ -1,7 +1,7 @@
 #include "Seedpch.h"
 
 #include "WindowsInput.h"
-#include "Seed/Application.h"
+#include "Seed/Core/Application.h"
 
 #include <GLFW/glfw3.h>
 

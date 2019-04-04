@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef SEED_PLATFORM_WINDOWS
+#ifdef SEED_DYNAMIC_LINK
 	#ifdef SEED_BUILD_DLL
 		#define SEED_API __declspec(dllexport)
 	#else
 		#define SEED_API __declspec(dllimport)
 	#endif
+#else
+	#define SEED_API 
+#endif
 #else
 	#error Seed Only Support Windows Now!
 #endif

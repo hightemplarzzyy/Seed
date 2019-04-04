@@ -4,10 +4,10 @@
 
 #include "Window.h"
 #include "LayerStack.h"
-#include "Events/Event.h"
-#include "Events/ApplicationEvents.h"
+#include "Seed/Events/Event.h"
+#include "Seed/Events/ApplicationEvents.h"
 
-#include "ImGui/imguilayer.h"
+#include "Seed/ImGui/imguilayer.h"
 
 namespace Seed {
 

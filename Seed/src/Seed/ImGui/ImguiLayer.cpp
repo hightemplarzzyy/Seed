@@ -3,11 +3,10 @@
 
 #include "imgui.h"
 
-#define IMGUI_IMPL_API
 #include "examples/imgui_impl_glfw.h"
 #include "examples/imgui_impl_opengl3.h"
 
-#include "Seed/application.h"
+#include "Seed/Core/Application.h"
 
 // TEMPORARY
 #include <glad/glad.h>
@@ -77,7 +76,7 @@ namespace Seed {
 	{
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::Get();
-		io.DisplaySize = ImVec2(app.GetWindow().GetWidth(), app.GetWindow().GetHeight());
+		io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
 
 		// Rendering
 		ImGui::Render();
@@ -96,6 +95,5 @@ namespace Seed {
 	{
 		static bool show = true;
 		ImGui::ShowDemoWindow(&show);
-
 	}
 }

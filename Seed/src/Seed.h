@@ -2,12 +2,16 @@
 
 //For use by Applications only
 
-#include "Seed/application.h"
-#include "Seed/layer.h"
-#include "Seed/log.h"
+#include "Seed/Core/Application.h"
+#include "Seed/Core/Layer.h"
+#include "Seed/Core/Log.h"
 
-#include "Seed/ImGui/imguilayer.h"
+#include "Seed/Core/Input.h"
+#include "Seed/Core/KeyCodes.h"
+#include "Seed/Core/MouseButtonCodes.h"
+
+#include "Seed/ImGui/ImguiLayer.h"
 
 //---Entry Point----------------
-#include "Seed/entrypoint.h"
+#include "Seed/EntryPoint.h"
 //------------------------------

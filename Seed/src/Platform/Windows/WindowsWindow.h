@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Seed/Window.h"
-#include "Seed/log.h"
+#include "Seed/Core/Window.h"
+#include "Seed/Core/Log.h"
 
 #include <GLFW/glfw3.h>
 

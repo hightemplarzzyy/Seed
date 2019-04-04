@@ -20,9 +20,6 @@ namespace Seed {
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
-
-		GLuint a;
-		glGenVertexArrays(1, &a);
 	}
 
 
