@@ -104,13 +104,17 @@ project "Seed-Game"
 	files
 	{
 		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.c",
+		"%{prj.name}/src/**.hpp",
 		"%{prj.name}/src/**.cpp",
 	}
 
 	includedirs
 	{
-		"Seed/vendor/spdlog/include",
+		"%{prj.name}/src",
 		"Seed/src",
+		"Seed/vendor",
+		"Seed/vendor/spdlog/include",
 		"%{IncludeDir.glm}"
 	}
 

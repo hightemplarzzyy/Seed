@@ -7,6 +7,9 @@
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
     </Filter>
@@ -21,6 +24,9 @@
     </Filter>
     <Filter Include="src\Seed\ImGui">
       <UniqueIdentifier>{674CFB6B-531A-EF71-3CAE-5F98281BCBD6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Seed\Renderer">
+      <UniqueIdentifier>{C32D4498-2F44-422E-78BB-CD4FE41013B6}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
@@ -45,6 +51,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLIndexBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
@@ -98,6 +116,27 @@
     </ClInclude>
     <ClInclude Include="src\Seed\ImGui\ImguiLayer.h">
       <Filter>src\Seed\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Seed\Renderer\IndexBuffer.h">
+      <Filter>src\Seed\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Seed\Renderer\RenderCommandQueue.h">
+      <Filter>src\Seed\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Seed\Renderer\Renderer.h">
+      <Filter>src\Seed\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Seed\Renderer\RendererAPI.h">
+      <Filter>src\Seed\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Seed\Renderer\Shader.h">
+      <Filter>src\Seed\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Seed\Renderer\Texture.h">
+      <Filter>src\Seed\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Seed\Renderer\VertexBuffer.h">
+      <Filter>src\Seed\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Seedpch.h">
       <Filter>src</Filter>
@@ -1196,6 +1235,18 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLIndexBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
@@ -1203,6 +1254,9 @@
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Seed\Core\Application.cpp">
+      <Filter>src\Seed\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Seed\Core\Core.cpp">
       <Filter>src\Seed\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Seed\Core\Layer.cpp">
@@ -1220,8 +1274,27 @@
     <ClCompile Include="src\Seed\ImGui\ImguiLayer.cpp">
       <Filter>src\Seed\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="src\Seed\Renderer\IndexBuffer.cpp">
+      <Filter>src\Seed\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Seed\Renderer\RenderCommandQueue.cpp">
+      <Filter>src\Seed\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Seed\Renderer\Renderer.cpp">
+      <Filter>src\Seed\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Seed\Renderer\Shader.cpp">
+      <Filter>src\Seed\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Seed\Renderer\Texture.cpp">
+      <Filter>src\Seed\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Seed\Renderer\VertexBuffer.cpp">
+      <Filter>src\Seed\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Seedpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
   </ItemGroup>
 </Project>

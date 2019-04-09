@@ -140,6 +140,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLIndexBuffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexBuffer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Seed.h" />
@@ -158,6 +162,13 @@
     <ClInclude Include="src\Seed\Events\KeyboardEvent.h" />
     <ClInclude Include="src\Seed\Events\MouseEvent.h" />
     <ClInclude Include="src\Seed\ImGui\ImguiLayer.h" />
+    <ClInclude Include="src\Seed\Renderer\IndexBuffer.h" />
+    <ClInclude Include="src\Seed\Renderer\RenderCommandQueue.h" />
+    <ClInclude Include="src\Seed\Renderer\Renderer.h" />
+    <ClInclude Include="src\Seed\Renderer\RendererAPI.h" />
+    <ClInclude Include="src\Seed\Renderer\Shader.h" />
+    <ClInclude Include="src\Seed\Renderer\Texture.h" />
+    <ClInclude Include="src\Seed\Renderer\VertexBuffer.h" />
     <ClInclude Include="src\Seedpch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
@@ -525,14 +536,26 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLIndexBuffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexBuffer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Seed\Core\Application.cpp" />
+    <ClCompile Include="src\Seed\Core\Core.cpp" />
     <ClCompile Include="src\Seed\Core\Layer.cpp" />
     <ClCompile Include="src\Seed\Core\LayerStack.cpp" />
     <ClCompile Include="src\Seed\Core\Log.cpp" />
     <ClCompile Include="src\Seed\ImGui\ImguiBuild.cpp" />
     <ClCompile Include="src\Seed\ImGui\ImguiLayer.cpp" />
+    <ClCompile Include="src\Seed\Renderer\IndexBuffer.cpp" />
+    <ClCompile Include="src\Seed\Renderer\RenderCommandQueue.cpp" />
+    <ClCompile Include="src\Seed\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Seed\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Seed\Renderer\Texture.cpp" />
+    <ClCompile Include="src\Seed\Renderer\VertexBuffer.cpp" />
     <ClCompile Include="src\Seedpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

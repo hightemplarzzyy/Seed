@@ -10,7 +10,17 @@
 #include "Seed/Core/KeyCodes.h"
 #include "Seed/Core/MouseButtonCodes.h"
 
+#include "imgui/imgui.h"
 #include "Seed/ImGui/ImguiLayer.h"
+
+
+//---Seed Render API------------
+#include "Seed/Renderer/Renderer.h"
+#include "Seed/Renderer/Shader.h"
+#include "Seed/Renderer/Texture.h"
+#include "Seed/Renderer/VertexBuffer.h"
+#include "Seed/Renderer/IndexBuffer.h"
+//------------------------------
 
 //---Entry Point----------------
 #include "Seed/EntryPoint.h"

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../vendor/imgui/imgui.h"
+
 #include "Seed/Core/Layer.h"
 #include "Seed/Events/KeyboardEvent.h"
 #include "Seed/Events/MouseEvent.h"
@@ -11,7 +13,8 @@ namespace Seed {
 	{
 	public:
 		ImGuiLayer();
-		~ImGuiLayer();
+		ImGuiLayer(const std::string& name);
+		virtual ~ImGuiLayer();
 
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;

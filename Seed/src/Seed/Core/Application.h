@@ -7,7 +7,7 @@
 #include "Seed/Events/Event.h"
 #include "Seed/Events/ApplicationEvents.h"
 
-#include "Seed/ImGui/imguilayer.h"
+#include "Seed/ImGui/ImguiLayer.h"
 
 namespace Seed {
 
@@ -19,25 +19,31 @@ namespace Seed {
 
 		void Run();
 
-		void OnEvent(Event& e);
+		virtual void OnInit() {};
+		virtual void OnShutdown() {};
+		virtual void OnUpdate() {};
+
+		virtual void OnEvent(Event& e);
 
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* overlay);
+		void RenderImGui();
 
 		inline Window& GetWindow() { return *m_Window; }
 
 		inline static Application& Get() { return *s_Instance; }
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
 
 		std::unique_ptr<Window> m_Window;
-		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+		ImGuiLayer* m_ImGuiLayer;
 
 		static Application* s_Instance;
 	};
 
-	//To be defined in the client
+	//Implement by client
 	Application* CreateApplication();
 }
