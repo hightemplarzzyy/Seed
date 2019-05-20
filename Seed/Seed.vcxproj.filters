@@ -1238,6 +1238,9 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLIndexBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
@@ -1295,6 +1298,5 @@
     <ClCompile Include="src\Seedpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
   </ItemGroup>
 </Project>
