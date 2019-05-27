@@ -1,0 +1,12 @@
+[submodule "Seed/vendor/GLFW"]
+	path = Seed/vendor/GLFW
+	url = http://github.com/hightemplarzzyy/glfw
+[submodule "Seed/vendor/imgui"]
+	path = Seed/vendor/imgui
+	url = https://github.com/hightemplarzzyy/imgui
+[submodule "Seed/vendor/spdlog"]
+	path = Seed/vendor/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "Seed/vendor/glm"]
+	path = Seed/vendor/glm
+	url = https://github.com/g-truc/glm
