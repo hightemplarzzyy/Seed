@@ -82,14 +82,17 @@ project "Seed"
 	
 	filter "configurations:Debug"
 		defines "SEED_DEBUG"
+		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
 		defines "SEED_RELEASE"
+		runtime "Debug"
 		optimize "on"
 
 	filter "configurations:Dist"
 		defines "SEED_DIST"
+		runtime "Release"
 		optimize "on"
 
 project "Sandbox"
@@ -135,12 +138,15 @@ project "Sandbox"
 	
 	filter "configurations:Debug"
 		defines "SEED_DEBUG"
+		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
 		defines "SEED_RELEASE"
+		runtime "Debug"
 		optimize "on"
 
 	filter "configurations:Dist"
 		defines "SEED_DIST"
+		runtime "Release"
 		optimize "on"
