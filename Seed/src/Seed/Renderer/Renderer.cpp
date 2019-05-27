@@ -31,10 +31,10 @@ namespace Seed {
 	{
 	}
 
-	void Renderer::DrawIndexed(unsigned int count)
+	void Renderer::DrawIndexed(unsigned int count, bool depthTest)
 	{
-		SEED_RENDER_1(count, {
-			RendererAPI::DrawIndexed(count);
+		SEED_RENDER_2(count, depthTest, {
+			RendererAPI::DrawIndexed(count, depthTest);
 			});
 	}
 

@@ -4,15 +4,25 @@
 
 namespace Seed {
 
-	using RendererID = unsigned int;
+	using RendererID = uint32_t;
 
-	enum class SEED_API RendererAPIType
+	enum class RendererAPIType
 	{
 		None,
 		OpenGL
 	};
 
-	class SEED_API RendererAPI
+	struct RendererAPICapabilities
+	{
+		std::string Vendor;
+		std::string Renderer;
+		std::string Version;
+		
+		int MaxSamples;
+		float MaxAnisotropy;
+	};
+
+	class RendererAPI
 	{
 	private:
 
@@ -23,7 +33,9 @@ namespace Seed {
 		static void Clear(float r, float g, float b, float a);
 		static void SetClearColor(float r, float g, float b, float a);
 
-		static void DrawIndexed(unsigned int count);
+		static void DrawIndexed(unsigned int count, bool depthTest = true);
+
+		static RendererAPICapabilities& GetCapabilities() { static RendererAPICapabilities Capabiilities; return Capabiilities; };
 
 		static RendererAPIType Current() { return s_CurrentRendererAPI; }
 	private:

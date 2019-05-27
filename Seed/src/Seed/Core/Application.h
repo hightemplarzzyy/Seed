@@ -29,6 +29,8 @@ namespace Seed {
 		void PushOverlay(Layer* overlay);
 		void RenderImGui();
 
+		std::string OpenFile(const std::string& filter) const;
+
 		inline Window& GetWindow() { return *m_Window; }
 
 		inline static Application& Get() { return *s_Instance; }

@@ -22,7 +22,7 @@ namespace Seed {
 		// Todo: alignment
 		*(RenderCommandFn*)m_CommandBufferPtr = fn;
 		m_CommandBufferPtr += sizeof(RenderCommandFn);
-		SEED_RENDER_TRACE("size of RenderCommandFn is {0}", sizeof(RenderCommandFn));
+		//SEED_RENDER_TRACE("size of RenderCommandFn is {0}", sizeof(RenderCommandFn));
 
 		*(int*)m_CommandBufferPtr = size;
 		m_CommandBufferPtr += sizeof(unsigned int);
@@ -36,8 +36,7 @@ namespace Seed {
 
 	void RenderCommandQueue::Execute()
 	{
-		SEED_RENDER_TRACE("RenderCommandQueue::Execute -- {0} commands, {1} bytes",
-			m_CommandCount, (m_CommandBufferPtr - m_CommandBuffer));
+		//SEED_RENDER_TRACE("RenderCommandQueue::Execute -- {0} commands, {1} bytes", m_CommandCount, (m_CommandBufferPtr - m_CommandBuffer));
 		byte* buffer = m_CommandBuffer;
 
 		for (unsigned int i = 0; i < m_CommandCount; i++)

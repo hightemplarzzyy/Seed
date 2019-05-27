@@ -1,6 +1,6 @@
 workspace "Seed"
 	architecture "x64"
-	startproject "Seed-Game"
+	targetdir "build"
 
 	configurations
 	{
@@ -8,6 +8,8 @@ workspace "Seed"
 		"Release",
 		"Dist"
 	}
+
+	startproject "Sandbox"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
@@ -38,9 +40,9 @@ project "Seed"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp",
-		"%{prj.name}/vendor/glm/glm/**.hpp",
-		"%{prj.name}/vendor/glm/glm/**.inl"
+		"%{prj.name}/src/**.c",
+		"%{prj.name}/src/**.hpp",
+		"%{prj.name}/src/**.cpp"
 	}
 
 	defines
@@ -55,7 +57,9 @@ project "Seed"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{prj.name}/vendor/assimp/include",
+		"%{prj.name}/vendor/stb/include"
 	}
 
 	links
@@ -78,21 +82,18 @@ project "Seed"
 	
 	filter "configurations:Debug"
 		defines "SEED_DEBUG"
-		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
 		defines "SEED_RELEASE"
-		runtime "Release"
 		optimize "on"
 
 	filter "configurations:Dist"
 		defines "SEED_DIST"
-		runtime "Release"
 		optimize "on"
 
-project "Seed-Game"
-	location "Seed-Game"
+project "Sandbox"
+	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
@@ -100,6 +101,12 @@ project "Seed-Game"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	links
+	{
+		"Seed",
+		"Seed/vendor/assimp/win64/assimp.lib"
+	}
 
 	files
 	{
@@ -118,11 +125,6 @@ project "Seed-Game"
 		"%{IncludeDir.glm}"
 	}
 
-	links
-	{
-		"Seed"
-	}
-
 	filter "system:windows"
 		systemversion "latest"
 
@@ -133,15 +135,12 @@ project "Seed-Game"
 	
 	filter "configurations:Debug"
 		defines "SEED_DEBUG"
-		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
 		defines "SEED_RELEASE"
-		runtime "Release"
 		optimize "on"
 
 	filter "configurations:Dist"
 		defines "SEED_DIST"
-		runtime "Release"
 		optimize "on"
