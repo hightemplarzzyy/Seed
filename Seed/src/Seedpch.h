@@ -22,3 +22,4 @@
 #include <Seed/Events/Event.h>
 #include <Seed/Core/Input.h>
 #include <Seed/Core/KeyCodes.h>
+#include <Seed/Core/MouseButtonCodes.h>

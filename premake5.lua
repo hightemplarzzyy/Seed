@@ -107,8 +107,7 @@ project "Sandbox"
 
 	links
 	{
-		"Seed",
-		"Seed/vendor/assimp/win64/assimp.lib"
+		"Seed"
 	}
 
 	files
@@ -141,12 +140,42 @@ project "Sandbox"
 		runtime "Debug"
 		symbols "on"
 
+		links
+		{
+			"Seed/vendor/assimp/bin/Debug/assimp-vc141-mtd.lib"
+		}
+
+		postbuildcommands
+		{
+			'{COPY} "../Seed/vendor/assimp/bin/Debug/assimp-vc141-mtd.dll" "%{cfg.targetdir}"'
+		}
+
 	filter "configurations:Release"
 		defines "SEED_RELEASE"
 		runtime "Debug"
 		optimize "on"
 
+		links
+		{
+			"Seed/vendor/assimp/bin/Release/assimp-vc141-mt.lib"
+		}
+		
+		postbuildcommands
+		{
+			'{COPY} "../Seed/vendor/assimp/bin/Release/assimp-vc141-mtd.dll" "%{cfg.targetdir}"'
+		}
+
 	filter "configurations:Dist"
 		defines "SEED_DIST"
 		runtime "Release"
 		optimize "on"
+
+		links
+		{
+			"Seed/vendor/assimp/bin/Release/assimp-vc141-mt.lib"
+		}
+
+		postbuildcommands
+		{
+			'{COPY} "../Seed/vendor/assimp/bin/Release/assimp-vc141-mtd.dll" "%{cfg.targetdir}"'
+		}
