@@ -2,6 +2,7 @@
 
 #include "Seed/Core/Window.h"
 #include "Seed/Core/Log.h"
+#include "Seed/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
 
@@ -29,6 +30,7 @@ namespace Seed {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{

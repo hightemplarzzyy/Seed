@@ -25,11 +25,11 @@ namespace Seed
 #define SEED_CORE_INFO(...)		Seed::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define SEED_CORE_WARN(...)		Seed::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define SEED_CORE_ERROR(...)	Seed::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define SEED_CORE_FATAL(...)	Seed::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define SEED_CORE_FATAL(...)	Seed::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 //Client Log Macros
 #define SEED_TRACE(...)		Seed::Log::GetClientLogger()->trace(__VA_ARGS__)
 #define SEED_INFO(...)		Seed::Log::GetClientLogger()->info(__VA_ARGS__)
 #define SEED_WARN(...)		Seed::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define SEED_ERROR(...)		Seed::Log::GetClientLogger()->error(__VA_ARGS__)
-#define SEED_FATAL(...)		Seed::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define SEED_FATAL(...)		Seed::Log::GetClientLogger()->critical(__VA_ARGS__)
