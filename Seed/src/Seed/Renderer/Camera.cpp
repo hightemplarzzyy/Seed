@@ -41,12 +41,18 @@ namespace Seed {
 			glm::vec2 delta = mouse - m_InitialMousePosition;
 			m_InitialMousePosition = mouse;
 
-			if (Input::IsMouseButtonPressed(GLFW_MOUSE_BUTTON_MIDDLE))
+			if (Input::IsMouseButtonPressed(SEED_MOUSE_BUTTON_MIDDLE))
+			{
 				MousePan(delta);
-			else if (Input::IsMouseButtonPressed(GLFW_MOUSE_BUTTON_LEFT))
+			}
+			else if (Input::IsMouseButtonPressed(SEED_MOUSE_BUTTON_LEFT))
+			{
 				MouseRotate(delta);
-			else if (Input::IsMouseButtonPressed(GLFW_MOUSE_BUTTON_RIGHT))
+			}
+			else if (Input::IsMouseButtonPressed(SEED_MOUSE_BUTTON_RIGHT))
+			{
 				MouseZoom(delta.y);
+			}
 		}
 
 		m_Position = CalculatePosition();
