@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Core.h"
-
+#include "TimeStep.h"
 #include "Window.h"
 #include "LayerStack.h"
 #include "Seed/Events/Event.h"
@@ -11,7 +11,7 @@
 
 namespace Seed {
 
-	class SEED_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -19,10 +19,10 @@ namespace Seed {
 
 		void Run();
 
-		virtual void OnInit() {};
-		virtual void OnShutdown() {};
-		virtual void OnUpdate() {};
-
+		virtual void OnInit() {}
+		virtual void OnShutdown() {}
+		virtual void OnUpdate() {}
+		virtual void OnUpdate(TimeStep ts) {}
 		virtual void OnEvent(Event& e);
 
 		void PushLayer(Layer* layer);
@@ -34,6 +34,8 @@ namespace Seed {
 		inline Window& GetWindow() { return *m_Window; }
 
 		inline static Application& Get() { return *s_Instance; }
+
+		float GetTime() const; // TODO: This should be in "Platform"
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
@@ -43,6 +45,9 @@ namespace Seed {
 		bool m_Minimized = false;
 		LayerStack m_LayerStack;
 		ImGuiLayer* m_ImGuiLayer;
+		TimeStep m_TimeStep;
+
+		float m_LastFrameTime = 0.0f;
 
 		static Application* s_Instance;
 	};

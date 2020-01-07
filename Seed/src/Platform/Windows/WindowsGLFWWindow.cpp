@@ -155,6 +155,10 @@ namespace Seed {
 	{
 		glfwPollEvents();
 		m_Context->SwapBuffers();
+
+		float time = glfwGetTime();
+		float delta = time - m_LastFrameTime;
+		m_LastFrameTime = time;
 	}
 
 	void WindowsGLFWWindow::SetVSync(bool enabled)

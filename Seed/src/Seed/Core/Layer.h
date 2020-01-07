@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core.h"
+#include "TimeStep.h"
 #include "Seed/Events/Event.h"
 
 namespace Seed {
@@ -14,6 +15,7 @@ namespace Seed {
 		virtual void OnAttach() {};
 		virtual void OnDetach() {};
 		virtual void OnUpdate() {};
+		virtual void OnUpdate(TimeStep ts) {};
 		virtual void OnEvent(Event& event) {};
 		virtual void OnImGuiRender() {};
 

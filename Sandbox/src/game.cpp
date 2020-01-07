@@ -93,7 +93,7 @@ public:
 	{
 	}
 
-	virtual void OnUpdate() override
+	virtual void OnUpdate(Seed::TimeStep ts) override
 	{
 		// THINGS TO LOOK AT:
 		// - BRDF LUT

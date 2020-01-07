@@ -5,6 +5,7 @@
 #include "Seed/Core/Application.h"
 #include "Seed/Core/Layer.h"
 #include "Seed/Core/Log.h"
+#include "Seed/Core/TimeStep.h"
 
 #include "Seed/Core/Input.h"
 #include "Seed/Core/KeyCodes.h"
