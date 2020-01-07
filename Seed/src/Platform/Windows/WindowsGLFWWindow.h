@@ -8,11 +8,11 @@
 
 namespace Seed {
 
-	class WindowsWindow : public Window
+	class WindowsGLFWWindow : public Window
 	{
 	public:
-		WindowsWindow(const WindowProperties& props);
-		virtual ~WindowsWindow();
+		WindowsGLFWWindow(const WindowProperties& props);
+		virtual ~WindowsGLFWWindow();
 
 		void OnUpdate() override;
 

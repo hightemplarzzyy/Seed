@@ -1,5 +1,5 @@
 #include "seedpch.h"
-#include "windowswindow.h"
+#include "WindowsGLFWWindow.h"
 
 #include "Seed/Events/applicationevents.h"
 #include "Seed/Events/keyboardevent.h"
@@ -17,20 +17,20 @@ namespace Seed {
 
 	Window* Window::Create(const WindowProperties& props)
 	{
-		return new WindowsWindow(props);
+		return new WindowsGLFWWindow(props);
 	}
 
-	WindowsWindow::WindowsWindow(const WindowProperties& props)
+	WindowsGLFWWindow::WindowsGLFWWindow(const WindowProperties& props)
 	{
 		Init(props);
 	}
 
-	WindowsWindow::~WindowsWindow()
+	WindowsGLFWWindow::~WindowsGLFWWindow()
 	{
 		Shutdown();
 	}
 
-	void WindowsWindow::Init(const WindowProperties& props)
+	void WindowsGLFWWindow::Init(const WindowProperties& props)
 	{
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
@@ -146,18 +146,18 @@ namespace Seed {
 		});
 	}
 
-	void WindowsWindow::Shutdown()
+	void WindowsGLFWWindow::Shutdown()
 	{
 		glfwDestroyWindow(m_Window);
 	}
 
-	void WindowsWindow::OnUpdate()
+	void WindowsGLFWWindow::OnUpdate()
 	{
 		glfwPollEvents();
 		m_Context->SwapBuffers();
 	}
 
-	void WindowsWindow::SetVSync(bool enabled)
+	void WindowsGLFWWindow::SetVSync(bool enabled)
 	{
 		if (enabled)
 			glfwSwapInterval(1);
@@ -167,7 +167,7 @@ namespace Seed {
 		m_Data.VSync = enabled;
 	}
 
-	bool WindowsWindow::IsVSync() const
+	bool WindowsGLFWWindow::IsVSync() const
 	{
 		return m_Data.VSync;
 	}
