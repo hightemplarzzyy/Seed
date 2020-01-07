@@ -13,6 +13,7 @@ namespace Seed {
 
 	void Renderer::Clear()
 	{
+		SEED_RENDER({ RendererAPI::Clear(0.0f, 0.0f, 0.0f, 0.0f); });
 	}
 
 	void Renderer::Clear(float r, float g, float b, float a)
