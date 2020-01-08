@@ -29,18 +29,19 @@ namespace Seed {
 	// Texture2D
 	//////////////////////////////////////////////////////////////////////////////////
 
-	OpenGLTexture2D::OpenGLTexture2D(TextureFormat format, unsigned int width, unsigned int height)
-		:m_Format(format), m_Width(width), m_Height(height)
+	OpenGLTexture2D::OpenGLTexture2D(TextureFormat format, uint32_t width, uint32_t height, TextureWrap wrap)
+		:m_Format(format), m_Width(width), m_Height(height),m_Wrap(wrap)
 	{
 		auto self = this;
 		SEED_RENDER_1(self, {
 			glGenTextures(1, &self->m_RendererID);
 			glBindTexture(GL_TEXTURE_2D, self->m_RendererID);
 
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+			GLenum wrap = self->m_Wrap == TextureWrap::Clamp ? GL_CLAMP_TO_EDGE : GL_REPEAT;
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrap);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrap);
 			glTextureParameterf(self->m_RendererID, GL_TEXTURE_MAX_ANISOTROPY, RendererAPI::GetCapabilities().MaxAnisotropy);
 
 			glTexImage2D(GL_TEXTURE_2D, 0, SeedToOpenGLTextureFormat(self->m_Format), self->m_Width, self->m_Height, 0, SeedToOpenGLTextureFormat(self->m_Format), GL_UNSIGNED_BYTE, nullptr);
@@ -55,7 +56,7 @@ namespace Seed {
 	{
 		int width, height, channels;
 		SEED_CORE_INFO("Loading texture {0}, srgb={1}", path, srgb);
-		m_ImageData = stbi_load(path.c_str(), &width, &height, &channels, srgb ? STBI_rgb : STBI_rgb_alpha);
+		m_ImageData.Data = stbi_load(path.c_str(), &width, &height, &channels, srgb ? STBI_rgb : STBI_rgb_alpha);
 
 		m_Width = width;
 		m_Height = height;
@@ -72,7 +73,7 @@ namespace Seed {
 				glTextureParameteri(self->m_RendererID, GL_TEXTURE_MIN_FILTER, levels > 1 ? GL_LINEAR_MIPMAP_LINEAR : GL_LINEAR);
 				glTextureParameteri(self->m_RendererID, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-				glTextureSubImage2D(self->m_RendererID, 0, 0, 0, self->m_Width, self->m_Height, GL_RGB, GL_UNSIGNED_BYTE, self->m_ImageData);
+				glTextureSubImage2D(self->m_RendererID, 0, 0, 0, self->m_Width, self->m_Height, GL_RGB, GL_UNSIGNED_BYTE, self->m_ImageData.Data);
 				glGenerateTextureMipmap(self->m_RendererID);
 			}
 			else
@@ -85,28 +86,56 @@ namespace Seed {
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-				glTexImage2D(GL_TEXTURE_2D, 0, SeedToOpenGLTextureFormat(self->m_Format), self->m_Width, self->m_Height, 0, srgb ? GL_SRGB8 : SeedToOpenGLTextureFormat(self->m_Format), GL_UNSIGNED_BYTE, self->m_ImageData);
+				glTexImage2D(GL_TEXTURE_2D, 0, SeedToOpenGLTextureFormat(self->m_Format), self->m_Width, self->m_Height, 0, srgb ? GL_SRGB8 : SeedToOpenGLTextureFormat(self->m_Format), GL_UNSIGNED_BYTE, self->m_ImageData.Data);
 				glGenerateMipmap(GL_TEXTURE_2D);
 
 				glBindTexture(GL_TEXTURE_2D, 0);
 			}
-			stbi_image_free(self->m_ImageData);
+			stbi_image_free(self->m_ImageData.Data);
 			});
 	}
 
 	OpenGLTexture2D::~OpenGLTexture2D()
 	{
-		auto self = this;
-		SEED_RENDER_1(self, {
+		SEED_RENDER_S({
 			glDeleteTextures(1, &self->m_RendererID);
 		});
 	}
 
-	void OpenGLTexture2D::Bind(unsigned int slot) const
+	void OpenGLTexture2D::Bind(uint32_t slot) const
 	{
 		SEED_RENDER_S1(slot, {
 			glBindTextureUnit(slot, self->m_RendererID);
 			});
+	}
+
+	void OpenGLTexture2D::Lock()
+	{
+		m_Locked = true;
+	}
+
+	void OpenGLTexture2D::Unlock()
+	{
+		m_Locked = false;
+		SEED_RENDER_S({
+			glTextureSubImage2D(self->m_RendererID, 0, 0, 0, self->m_Width, self->m_Height, SeedToOpenGLTextureFormat(self->m_Format), GL_UNSIGNED_BYTE, self->m_ImageData.Data);
+			});
+	}
+
+	void OpenGLTexture2D::Resize(uint32_t width, uint32_t height)
+	{
+		SEED_CORE_ASSERT(m_Locked, "Texture must be locked!");
+
+		m_ImageData.Allocate(width * height * Texture::GetBPP(m_Format));
+#if SEED_DEBUG
+		m_ImageData.ZeroInitialize();
+#endif
+	}
+
+	Buffer OpenGLTexture2D::GetWriteableBuffer()
+	{
+		SEED_CORE_ASSERT(m_Locked, "Texture must be locked!");
+		return m_ImageData;
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -209,11 +238,10 @@ namespace Seed {
 			});
 	}
 
-	void OpenGLTextureCube::Bind(unsigned int slot) const
+	void OpenGLTextureCube::Bind(uint32_t slot) const
 	{
 		SEED_RENDER_S1(slot, {
-			glActiveTexture(GL_TEXTURE0 + slot);
-			glBindTexture(GL_TEXTURE_CUBE_MAP, self->m_RendererID);
+			glBindTextureUnit(slot, self->m_RendererID);
 			});
 	}
 

@@ -5,7 +5,8 @@
 
 namespace Seed {
 
-	class SEED_API Renderer
+	// TODO: Maybe rename this to RendererAPI? Because we want an actual renderer vs API calls...
+	class Renderer
 	{
 	public:
 		typedef void(*RenderCommandFn)(void*);

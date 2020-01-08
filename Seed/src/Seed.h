@@ -23,6 +23,7 @@
 #include "Seed/Renderer/Buffer.h"
 #include "Seed/Renderer/Mesh.h"
 #include "Seed/Renderer/Camera.h"
+#include "Seed/Renderer/Material.h"
 //------------------------------
 
 //---Entry Point----------------
