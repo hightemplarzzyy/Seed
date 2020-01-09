@@ -32,6 +32,7 @@ namespace Seed {
 		PushOverlay(m_ImGuiLayer);
 
 		Renderer::Init();
+		Renderer::Get().WaitAndRender();
 	}
 
 

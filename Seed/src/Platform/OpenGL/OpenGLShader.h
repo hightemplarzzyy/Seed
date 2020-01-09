@@ -76,7 +76,7 @@ namespace Seed {
 		inline const ShaderResourceList& GetResources() const override { return m_Resources; }
 
 	private:
-		RendererID m_RendererID;
+		RendererID m_RendererID = 0;
 		bool m_Loaded = false;
 
 		std::string m_Name, m_AssetPath;

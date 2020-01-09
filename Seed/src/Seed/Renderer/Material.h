@@ -48,6 +48,8 @@ namespace Seed {
 		{
 			Set(name, (const Ref<Texture>&)texture);
 		}
+	public:
+		static Ref<Material> Create(const Ref<Shader>& shader);
 	private:
 		void AllocateStorage();
 		void OnShaderReloaded();
@@ -78,6 +80,8 @@ namespace Seed {
 		void Set(const std::string& name, const T& value)
 		{
 			auto decl = m_Material->FindUniformDeclaration(name);
+			if (!decl)
+				return;
 			// SEED_CORE_ASSERT(decl, "Could not find uniform with name '{0}'", name);
 			SEED_CORE_ASSERT(decl, "Could not find uniform with name 'x'");
 			auto& buffer = GetUniformBufferTarget(decl);
@@ -106,6 +110,8 @@ namespace Seed {
 		}
 
 		void Bind() const;
+	public:
+		static Ref<MaterialInstance> Create(const Ref<Material>& material);
 	private:
 		void AllocateStorage();
 		void OnShaderReloaded();

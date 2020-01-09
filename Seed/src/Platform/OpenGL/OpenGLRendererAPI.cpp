@@ -2,6 +2,7 @@
 #include "Seed/Renderer/RendererAPI.h"
 
 #include <glad/glad.h>
+#include "Seed/Renderer/Shader.h"
 
 namespace Seed {
 
@@ -14,13 +15,14 @@ namespace Seed {
 		}
 		else
 		{
-			SEED_CORE_TRACE("{0}", message);
+			// SEED_CORE_TRACE("{0}", message);
 		}
 	}
 
 	void RendererAPI::Init()
 	{
 		glDebugMessageCallback(OpenGLLogMessage, nullptr);
+		glEnable(GL_DEBUG_OUTPUT);
 		glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 
 		unsigned int vao;
@@ -50,9 +52,15 @@ namespace Seed {
 			SEED_CORE_ERROR("OpenGL Error {0}", error);
 			error = glGetError();
 		}
+
+		LoadRequiredAssets();
 	}
 
 	void RendererAPI::Shutdown()
+	{
+	}
+
+	void RendererAPI::LoadRequiredAssets()
 	{
 	}
 

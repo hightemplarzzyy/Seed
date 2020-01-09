@@ -1,6 +1,8 @@
 #include "Seedpch.h"
 #include "Renderer.h"
 
+#include "Shader.h"
+
 namespace Seed {
 
 	Renderer* Renderer::s_Instance = new Renderer();
@@ -8,7 +10,11 @@ namespace Seed {
 
 	void Renderer::Init()
 	{
+		s_Instance->m_ShaderLibrary = std::make_unique<ShaderLibrary>();
 		SEED_RENDER({ RendererAPI::Init(); });
+
+		Renderer::GetShaderLibrary()->Load("assets/shaders/SeedPBR_Static.glsl");
+		Renderer::GetShaderLibrary()->Load("assets/shaders/SeedPBR_Anim.glsl");
 	}
 
 	void Renderer::Clear()

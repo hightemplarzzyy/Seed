@@ -5,6 +5,8 @@
 
 namespace Seed {
 
+	class ShaderLibrary;
+
 	// TODO: Maybe rename this to RendererAPI? Because we want an actual renderer vs API calls...
 	class Renderer
 	{
@@ -22,6 +24,8 @@ namespace Seed {
 
 		static void Init();
 
+		static const Scope<ShaderLibrary>& GetShaderLibrary() { return Get().m_ShaderLibrary; }
+
 		static void* Submit(RenderCommandFn fn, unsigned int size)
 		{
 			return s_Instance->m_CommandQueue.Allocate(fn, size);
@@ -35,6 +39,7 @@ namespace Seed {
 		static Renderer* s_Instance;
 
 		RenderCommandQueue m_CommandQueue;
+		Scope<ShaderLibrary> m_ShaderLibrary;
 	};
 }
 

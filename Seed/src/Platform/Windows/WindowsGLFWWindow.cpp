@@ -161,6 +161,13 @@ namespace Seed {
 		m_LastFrameTime = time;
 	}
 
+	inline std::pair<float, float> WindowsGLFWWindow::GetWindowPos() const
+	{
+		int x, y;
+		glfwGetWindowPos(m_Window, &x, &y);
+		return { x, y };
+	}
+
 	void WindowsGLFWWindow::SetVSync(bool enabled)
 	{
 		if (enabled)
