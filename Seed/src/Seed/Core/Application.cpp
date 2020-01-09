@@ -124,7 +124,7 @@ namespace Seed {
 			return false;
 		}
 		m_Minimized = false;
-		SEED_RENDER_2(width, height, { glViewport(0, 0, width, height); });
+		Renderer::OnWindowResize(width, height);
 		auto& fbs = FramebufferPool::GetGlobal()->GetAll();
 		for (auto& fb : fbs)
 			fb->Resize(width, height);

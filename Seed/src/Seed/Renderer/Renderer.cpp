@@ -38,6 +38,13 @@ namespace Seed {
 	{
 	}
 
+	void Renderer::OnWindowResize(uint32_t width, uint32_t height)
+	{
+		SEED_RENDER_2(width, height, {
+			RendererAPI::SetViewPort(0, 0, width, height);
+			});
+	}
+
 	void Renderer::DrawIndexed(uint32_t count, bool depthTest)
 	{
 		SEED_RENDER_2(count, depthTest, {

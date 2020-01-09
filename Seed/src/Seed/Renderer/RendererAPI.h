@@ -30,10 +30,12 @@ namespace Seed {
 		static void Init();
 		static void Shutdown();
 
+		static void SetViewPort(uint32_t x, uint32_t y, uint32_t width, uint32_t height);
+
 		static void Clear(float r, float g, float b, float a);
 		static void SetClearColor(float r, float g, float b, float a);
 
-		static void DrawIndexed(unsigned int count, bool depthTest = true);
+		static void DrawIndexed(uint32_t count, bool depthTest = true);
 
 		static RendererAPICapabilities& GetCapabilities() { static RendererAPICapabilities Capabiilities; return Capabiilities; };
 

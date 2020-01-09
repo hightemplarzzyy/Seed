@@ -75,7 +75,12 @@ namespace Seed {
 		glClearColor(r, g, b, a);
 	}
 
-	void RendererAPI::DrawIndexed(unsigned int count, bool depthTest)
+	void RendererAPI::SetViewPort(uint32_t x, uint32_t y, uint32_t width, uint32_t height)
+	{
+		glViewport(x, y, width, height);
+	}
+
+	void RendererAPI::DrawIndexed(uint32_t count, bool depthTest)
 	{
 		if (!depthTest)
 			glDisable(GL_DEPTH_TEST);
