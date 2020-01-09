@@ -7,7 +7,7 @@
 
 namespace Seed {
 
-	Input* Input::s_Instance = new WindowsGLFWInput;
+	Scope<Input> Input::s_Instance = CreateScope<WindowsGLFWInput>();
 
 	bool WindowsGLFWInput::IsKeyPressedImpl(int keycode)
 	{

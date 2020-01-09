@@ -141,7 +141,7 @@ namespace Seed {
 	private:
 		std::vector<Submesh> m_Submeshes;
 
-		std::unique_ptr<Assimp::Importer> m_Importer;
+		Scope<Assimp::Importer> m_Importer;
 
 		glm::mat4 m_InverseTransform;
 

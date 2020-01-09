@@ -88,7 +88,7 @@ namespace Seed {
 		};
 		RoughnessInput m_RoughnessInput;
 
-		std::unique_ptr<Framebuffer> m_Framebuffer, m_FinalPresentBuffer;
+		Scope<Framebuffer> m_Framebuffer, m_FinalPresentBuffer;
 
 		Ref<VertexArray> m_FullscreenQuadVertexArray;
 		Ref<TextureCube> m_EnvironmentCubeMap, m_EnvironmentIrradiance;

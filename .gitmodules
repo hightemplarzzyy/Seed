@@ -4,6 +4,7 @@
 [submodule "Seed/vendor/imgui"]
 	path = Seed/vendor/imgui
 	url = https://github.com/hightemplarzzyy/imgui
+	branch = docking
 [submodule "Seed/vendor/spdlog"]
 	path = Seed/vendor/spdlog
 	url = https://github.com/gabime/spdlog

@@ -15,7 +15,6 @@
 #include <Windows.h>
 
 namespace Seed {
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
 	Application* Application::s_Instance = nullptr;
 
@@ -24,8 +23,8 @@ namespace Seed {
 		SEED_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
-		m_Window = std::unique_ptr<Window>(Window::Create(WindowProperties(props.name, props.WindowWidth, props.WindowHeight)));
-		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		m_Window = Scope<Window>(Window::Create(WindowProperties(props.name, props.WindowWidth, props.WindowHeight)));
+		m_Window->SetEventCallback(SEED_BIND_EVENT_FN(Application::OnEvent));
 		m_Window->SetVSync(false);
 
 		m_ImGuiLayer = new ImGuiLayer();
@@ -70,14 +69,14 @@ namespace Seed {
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
-		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
+		dispatcher.Dispatch<WindowCloseEvent>(SEED_BIND_EVENT_FN(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(SEED_BIND_EVENT_FN(Application::OnWindowResize));
 
 		//SEED_CORE_TRACE("{0}", e);
 
-		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
+		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend();++it)
 		{
-			(*--it)->OnEvent(e);
+			(*it)->OnEvent(e);
 			if (e.Handled)
 				break;
 		}

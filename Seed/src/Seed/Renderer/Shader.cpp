@@ -15,7 +15,7 @@ namespace Seed {
 		switch (RendererAPI::Current())
 		{
 			case RendererAPIType::None: return nullptr;
-			case RendererAPIType::OpenGL: result = std::make_shared<OpenGLShader>(filepath);
+			case RendererAPIType::OpenGL: result = CreateRef<OpenGLShader>(filepath);
 		}
 		s_AllShaders.push_back(result);
 		return result;
