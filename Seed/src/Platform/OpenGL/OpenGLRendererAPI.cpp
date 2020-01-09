@@ -11,7 +11,7 @@ namespace Seed {
 		if (severity != GL_DEBUG_SEVERITY_NOTIFICATION)
 		{
 			SEED_CORE_ERROR("{0}", message);
-			SEED_CORE_ASSERT(false, "");
+			// SEED_CORE_ASSERT(false, "");
 		}
 		else
 		{

@@ -43,6 +43,14 @@ namespace Seed {
 			memcpy(Data + offset, data, size);
 		}
 
+		static Buffer Copy(void* data, uint32_t size)
+		{
+			Buffer buffer;
+			buffer.Allocate(size);
+			memcpy(buffer.Data, data, size);
+			return buffer;
+		}
+
 		operator bool() const
 		{
 			return Data;

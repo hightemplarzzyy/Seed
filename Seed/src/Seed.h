@@ -21,11 +21,8 @@
 #include "Seed/Renderer/Texture.h"
 #include "Seed/Renderer/FrameBuffer.h"
 #include "Seed/Renderer/Buffer.h"
+#include "Seed/Renderer/VertexArray.h"
 #include "Seed/Renderer/Mesh.h"
 #include "Seed/Renderer/Camera.h"
 #include "Seed/Renderer/Material.h"
-//------------------------------
-
-//---Entry Point----------------
-#include "Seed/EntryPoint.h"
 //------------------------------

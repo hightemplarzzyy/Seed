@@ -5,7 +5,7 @@
 
 namespace Seed {
 
-	class SEED_API LayerStack
+	class LayerStack
 	{
 	public:
 		LayerStack();

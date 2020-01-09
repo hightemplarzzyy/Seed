@@ -121,6 +121,7 @@ namespace Seed {
 		// Note: currently for simplicity this is simply a string filepath, however
 		//       in the future this will be an asset object + metadata
 		static Ref<Shader> Create(const std::string& filepath);
+		static Ref<Shader> CreateFromString(const std::string& source);
 
 		virtual void SetVSMaterialUniformBuffer(Buffer buffer) = 0;
 		virtual void SetPSMaterialUniformBuffer(Buffer buffer) = 0;

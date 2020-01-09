@@ -19,12 +19,12 @@ namespace Seed {
 
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application()
+	Application::Application(const ApplicationProps& props)
 	{
 		SEED_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
-		m_Window = std::unique_ptr<Window>(Window::Create());
+		m_Window = std::unique_ptr<Window>(Window::Create(WindowProperties(props.name, props.WindowWidth, props.WindowHeight)));
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 		m_Window->SetVSync(false);
 

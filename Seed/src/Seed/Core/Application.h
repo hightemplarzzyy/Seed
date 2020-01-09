@@ -11,10 +11,16 @@
 
 namespace Seed {
 
+	struct ApplicationProps
+	{
+		std::string name;
+		uint32_t WindowWidth, WindowHeight;
+	};
+
 	class Application
 	{
 	public:
-		Application();
+		Application(const ApplicationProps& props = {"Seed Engine", 1280, 720});
 		virtual ~Application();
 
 		void Run();

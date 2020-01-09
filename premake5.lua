@@ -1,5 +1,5 @@
 workspace "Seed"
-	architecture "x64"
+	architecture "x86_64"
 	targetdir "build"
 
 	configurations

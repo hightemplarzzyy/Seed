@@ -4,7 +4,7 @@
 
 namespace Seed {
 
-	class SEED_API MouseMovedEvent : public Event
+	class MouseMovedEvent : public Event
 	{
 	public:
 		MouseMovedEvent(float x, float y)
@@ -27,7 +27,7 @@ namespace Seed {
 		float m_MouseX, m_MouseY;
 	};
 
-	class SEED_API MouseScrolledEvent : public Event
+	class MouseScrolledEvent : public Event
 	{
 	public:
 		MouseScrolledEvent(float xOffset, float yOffset)
@@ -50,7 +50,7 @@ namespace Seed {
 		float m_XOffset, m_YOffset;
 	};
 
-	class SEED_API MouseButtonEvent : public Event
+	class MouseButtonEvent : public Event
 	{
 	public:
 		inline int GetMouseButton() const { return m_Button; }
@@ -64,7 +64,7 @@ namespace Seed {
 		int m_Button;
 	};
 
-	class SEED_API MouseButtonPressedEvent : public MouseButtonEvent
+	class MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonPressedEvent(int button)
@@ -80,7 +80,7 @@ namespace Seed {
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
-	class SEED_API MouseButtonReleasedEvent : public MouseButtonEvent
+	class MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonReleasedEvent(int button)
