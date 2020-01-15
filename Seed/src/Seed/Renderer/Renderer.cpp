@@ -1,37 +1,27 @@
 #include "Seedpch.h"
 #include "Renderer.h"
 
-#include "Shader.h"
-
 namespace Seed {
 
-	Renderer* Renderer::s_Instance = new Renderer();
-	RendererAPIType RendererAPI::s_CurrentRendererAPI = RendererAPIType::OpenGL;
+	Scope<ShaderLibrary> Renderer::m_ShaderLibrary = nullptr;
 
 	void Renderer::Init()
 	{
-		s_Instance->m_ShaderLibrary = std::make_unique<ShaderLibrary>();
-		SEED_RENDER({ RendererAPI::Init(); });
+		m_ShaderLibrary = CreateScope<ShaderLibrary>();
+		RenderCommand::Init();
 
-		Renderer::GetShaderLibrary()->Load("assets/shaders/SeedPBR_Static.glsl");
-		Renderer::GetShaderLibrary()->Load("assets/shaders/SeedPBR_Anim.glsl");
+		GetShaderLibrary()->Load("assets/shaders/SeedPBR_Static.glsl");
+		GetShaderLibrary()->Load("assets/shaders/SeedPBR_Anim.glsl");
 	}
 
 	void Renderer::Clear()
 	{
-		SEED_RENDER({ RendererAPI::Clear(0.0f, 0.0f, 0.0f, 0.0f); });
+		RenderCommand::Clear();
 	}
 
 	void Renderer::Clear(float r, float g, float b, float a)
 	{
-		SEED_RENDER_4(r, g, b, a, {
-			RendererAPI::Clear(r,g,b,a);
-			});
-	}
-
-	void Renderer::ClearMagenta()
-	{
-		Clear(1, 0, 1);
+		RenderCommand::Clear(r, g, b, a);
 	}
 
 	void Renderer::SetClearColor(float r, float g, float b, float a)
@@ -40,20 +30,11 @@ namespace Seed {
 
 	void Renderer::OnWindowResize(uint32_t width, uint32_t height)
 	{
-		SEED_RENDER_2(width, height, {
-			RendererAPI::SetViewPort(0, 0, width, height);
-			});
+		RenderCommand::SetViewport(width, height);
 	}
 
 	void Renderer::DrawIndexed(uint32_t count, bool depthTest)
 	{
-		SEED_RENDER_2(count, depthTest, {
-			RendererAPI::DrawIndexed(count, depthTest);
-			});
-	}
-
-	void Renderer::WaitAndRender()
-	{
-		s_Instance->m_CommandQueue.Execute();
+		RenderCommand::DrawIndexed(count, depthTest);
 	}
 }

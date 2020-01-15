@@ -14,13 +14,13 @@ namespace Seed {
 	struct ApplicationProps
 	{
 		std::string name;
-		uint32_t WindowWidth, WindowHeight;
+		uint32_t WindowWidth, WindowHeight, APIType;
 	};
 
 	class Application
 	{
 	public:
-		Application(const ApplicationProps& props = {"Seed Engine", 1280, 720});
+		Application(const ApplicationProps& props = {"Seed Engine", 1280, 720, 1});
 		virtual ~Application();
 
 		void Run();
@@ -40,6 +40,12 @@ namespace Seed {
 		inline Window& GetWindow() { return *m_Window; }
 
 		inline static Application& Get() { return *s_Instance; }
+
+		static uint32_t& APIType()
+		{
+			static uint32_t s_APIType;
+			return s_APIType;
+		}
 
 		float GetTime() const; // TODO: This should be in "Platform"
 	private:

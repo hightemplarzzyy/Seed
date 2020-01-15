@@ -9,7 +9,8 @@ namespace Seed {
 	enum class RendererAPIType
 	{
 		None,
-		OpenGL
+		OpenGL,
+		DX11
 	};
 
 	struct RendererAPICapabilities
@@ -27,23 +28,25 @@ namespace Seed {
 	private:
 
 	public:
-		static void Init();
-		static void Shutdown();
+		static RendererAPI* Create();
+		virtual void Init() = 0;
+		virtual void Shutdown() = 0;
 
-		static void SetViewPort(uint32_t x, uint32_t y, uint32_t width, uint32_t height);
+		virtual void SetViewPort(uint32_t x, uint32_t y, uint32_t width, uint32_t height) = 0;
 
-		static void Clear(float r, float g, float b, float a);
-		static void SetClearColor(float r, float g, float b, float a);
+		virtual void Clear(float r, float g, float b, float a) = 0;
+		virtual void SetClearColor(float r, float g, float b, float a) = 0;
 
-		static void DrawIndexed(uint32_t count, bool depthTest = true);
+		virtual void DrawIndexed(uint32_t count, bool depthTest = true) = 0;
+
+		virtual void LoadRequiredAssets() = 0;
 
 		static RendererAPICapabilities& GetCapabilities() { static RendererAPICapabilities Capabiilities; return Capabiilities; };
+		static RendererAPIType& Current()
+		{
+			static RendererAPIType s_API;
+			return s_API;
+		}
 
-		static RendererAPIType Current() { return s_CurrentRendererAPI; }
-
-	private:
-		static void LoadRequiredAssets();
-	private:
-		static RendererAPIType s_CurrentRendererAPI;
 	};
 }

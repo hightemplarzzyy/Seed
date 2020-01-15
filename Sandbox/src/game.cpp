@@ -19,5 +19,5 @@ public:
 
 Seed::Application* Seed::CreateApplication()
 {
-	return new SeedApplication({ "Seed Editor", 1600, 900 });
+	return new SeedApplication({ "Seed Editor", 1600, 900, 1});
 }

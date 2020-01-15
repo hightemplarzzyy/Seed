@@ -28,30 +28,22 @@ namespace Seed {
 
 	OpenGLVertexArray::OpenGLVertexArray()
 	{
-		SEED_RENDER_S({
-			glCreateVertexArrays(1, &self->m_RendererID);
-			});
+		glCreateVertexArrays(1, &m_RendererID);
 	}
 
 	OpenGLVertexArray::~OpenGLVertexArray()
 	{
-		SEED_RENDER_S({
-			glDeleteVertexArrays(1, &self->m_RendererID);
-			});
+		glDeleteVertexArrays(1, &m_RendererID);
 	}
 
 	void OpenGLVertexArray::Bind() const
 	{
-		SEED_RENDER_S({
-			glBindVertexArray(self->m_RendererID);
-			});
+		glBindVertexArray(m_RendererID);
 	}
 
 	void OpenGLVertexArray::Unbind() const
 	{
-		SEED_RENDER_S({
-			glBindVertexArray(0);
-			});
+		glBindVertexArray(0);
 	}
 
 	void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer)
@@ -61,32 +53,30 @@ namespace Seed {
 		Bind();
 		vertexBuffer->Bind();
 
-		SEED_RENDER_S1(vertexBuffer, {
-			const auto & layout = vertexBuffer->GetLayout();
-			for (const auto& element : layout)
+		const auto& layout = vertexBuffer->GetLayout();
+		for (const auto& element : layout)
+		{
+			auto glBaseType = ShaderDataTypeToOpenGLBaseType(element.Type);
+			glEnableVertexAttribArray(m_VertexBufferIndex);
+			if (glBaseType == GL_INT)
 			{
-				auto glBaseType = ShaderDataTypeToOpenGLBaseType(element.Type);
-				glEnableVertexAttribArray(self->m_VertexBufferIndex);
-				if (glBaseType == GL_INT)
-				{
-					glVertexAttribIPointer(self->m_VertexBufferIndex,
-						element.GetComponentCount(),
-						glBaseType,
-						layout.GetStride(),
-						(const void*)(intptr_t)element.Offset);
-				}
-				else
-				{
-					glVertexAttribPointer(self->m_VertexBufferIndex,
-						element.GetComponentCount(),
-						glBaseType,
-						element.Normalized ? GL_TRUE : GL_FALSE,
-						layout.GetStride(),
-						(const void*)(intptr_t)element.Offset);
-				}
-				self->m_VertexBufferIndex++;
+				glVertexAttribIPointer(m_VertexBufferIndex,
+					element.GetComponentCount(),
+					glBaseType,
+					layout.GetStride(),
+					(const void*)(intptr_t)element.Offset);
 			}
-			});
+			else
+			{
+				glVertexAttribPointer(m_VertexBufferIndex,
+					element.GetComponentCount(),
+					glBaseType,
+					element.Normalized ? GL_TRUE : GL_FALSE,
+					layout.GetStride(),
+					(const void*)(intptr_t)element.Offset);
+			}
+			m_VertexBufferIndex++;
+		}
 		m_VertexBuffers.push_back(vertexBuffer);
 	}
 

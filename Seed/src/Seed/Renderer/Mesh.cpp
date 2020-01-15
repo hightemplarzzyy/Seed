@@ -439,23 +439,21 @@ namespace Seed {
 		bool materialOverride = !!materialInstance;
 
 		// TODO: replace with render API calls
-		SEED_RENDER_S2(transform, materialOverride, {
-			for (Submesh& submesh : self->m_Submeshes)
+		for (Submesh& submesh : m_Submeshes)
+		{
+			if (m_IsAnimated)
 			{
-				if (self->m_IsAnimated)
+				for (size_t i = 0; i < m_BoneTransforms.size(); i++)
 				{
-					for (size_t i = 0; i < self->m_BoneTransforms.size(); i++)
-					{
-						std::string uniformName = std::string("u_BoneTransforms[") + std::to_string(i) + std::string("]");
-						self->m_MeshShader->SetMat4FromRenderThread(uniformName, self->m_BoneTransforms[i]);
-					}
+					std::string uniformName = std::string("u_BoneTransforms[") + std::to_string(i) + std::string("]");
+					m_MeshShader->SetMat4FromRenderThread(uniformName, m_BoneTransforms[i]);
 				}
-
-				if (!materialOverride)
-					self->m_MeshShader->SetMat4FromRenderThread("u_ModelMatrix", transform * submesh.Transform);
-				glDrawElementsBaseVertex(GL_TRIANGLES, submesh.IndexCount, GL_UNSIGNED_INT, (void*)(sizeof(uint32_t) * submesh.BaseIndex), submesh.BaseVertex);
 			}
-		});
+
+			if (!materialOverride)
+				m_MeshShader->SetMat4FromRenderThread("u_ModelMatrix", transform * submesh.Transform);
+			glDrawElementsBaseVertex(GL_TRIANGLES, submesh.IndexCount, GL_UNSIGNED_INT, (void*)(sizeof(uint32_t) * submesh.BaseIndex), submesh.BaseVertex);
+		}
 	}
 
 	void Mesh::OnImGuiRender()

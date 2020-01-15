@@ -19,15 +19,11 @@ namespace Seed {
 		}
 	}
 
-	void RendererAPI::Init()
+	void OpenGLRendererAPI::Init()
 	{
 		glDebugMessageCallback(OpenGLLogMessage, nullptr);
 		glEnable(GL_DEBUG_OUTPUT);
 		glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-
-		unsigned int vao;
-		glGenVertexArrays(1, &vao);
-		glBindVertexArray(vao);
 
 		glEnable(GL_DEPTH_TEST);
 		//glEnable(GL_CULL_FACE);
@@ -56,31 +52,31 @@ namespace Seed {
 		LoadRequiredAssets();
 	}
 
-	void RendererAPI::Shutdown()
+	void OpenGLRendererAPI::Shutdown()
 	{
 	}
 
-	void RendererAPI::LoadRequiredAssets()
+	void OpenGLRendererAPI::LoadRequiredAssets()
 	{
 	}
 
-	void RendererAPI::Clear(float r, float g, float b, float a)
+	void OpenGLRendererAPI::Clear(float r, float g, float b, float a)
 	{
 		glClearColor(r, g, b, a);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
-	void RendererAPI::SetClearColor(float r, float g, float b, float a)
+	void OpenGLRendererAPI::SetClearColor(float r, float g, float b, float a)
 	{
 		glClearColor(r, g, b, a);
 	}
 
-	void RendererAPI::SetViewPort(uint32_t x, uint32_t y, uint32_t width, uint32_t height)
+	void OpenGLRendererAPI::SetViewPort(uint32_t x, uint32_t y, uint32_t width, uint32_t height)
 	{
 		glViewport(x, y, width, height);
 	}
 
-	void RendererAPI::DrawIndexed(uint32_t count, bool depthTest)
+	void OpenGLRendererAPI::DrawIndexed(uint32_t count, bool depthTest)
 	{
 		if (!depthTest)
 			glDisable(GL_DEPTH_TEST);

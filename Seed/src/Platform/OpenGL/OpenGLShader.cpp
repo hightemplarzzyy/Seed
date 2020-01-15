@@ -44,22 +44,20 @@ namespace Seed {
 		m_ShaderSource = PreProcess(source);
 		Parse();
 
-		SEED_RENDER_S({
-			if (self->m_RendererID)
-				glDeleteShader(self->m_RendererID);
+		if (m_RendererID)
+			glDeleteShader(m_RendererID);
 
-			self->CompileAndUploadShader();
-			self->ResolveUniforms();
-			self->ValidateUniforms();
+		CompileAndUploadShader();
+		ResolveUniforms();
+		ValidateUniforms();
 
-			if (self->m_Loaded)
-			{
-				for (auto& callback : self->m_ShaderReloadedCallbacks)
-					callback();
-			}
+		if (m_Loaded)
+		{
+			for (auto& callback : m_ShaderReloadedCallbacks)
+				callback();
+		}
 
-			self->m_Loaded = true;
-			});
+		m_Loaded = true;
 	}
 
 	void OpenGLShader::AddShaderReloadedCallback(const ShaderReloadedCallback& callback)
@@ -69,9 +67,7 @@ namespace Seed {
 
 	void OpenGLShader::Bind()
 	{
-		SEED_RENDER_S({
-			glUseProgram(self->m_RendererID);
-		});
+		glUseProgram(m_RendererID);
 	}
 
 	std::string OpenGLShader::ReadShaderFromFile(const std::string& filepath) const
@@ -593,18 +589,14 @@ namespace Seed {
 
 	void OpenGLShader::SetVSMaterialUniformBuffer(Buffer buffer)
 	{
-		SEED_RENDER_S1(buffer, {
-			glUseProgram(self->m_RendererID);
-			self->ResolveAndSetUniforms(self->m_VSMaterialUniformBuffer, buffer);
-			});
+		glUseProgram(m_RendererID);
+		ResolveAndSetUniforms(m_VSMaterialUniformBuffer, buffer);
 	}
 
 	void OpenGLShader::SetPSMaterialUniformBuffer(Buffer buffer)
 	{
-		SEED_RENDER_S1(buffer, {
-			glUseProgram(self->m_RendererID);
-			self->ResolveAndSetUniforms(self->m_PSMaterialUniformBuffer, buffer);
-			});
+		glUseProgram(m_RendererID);
+		ResolveAndSetUniforms(m_PSMaterialUniformBuffer, buffer);
 	}
 
 	void OpenGLShader::ResolveAndSetUniforms(const Scope<OpenGLShaderUniformBufferDeclaration>& decl, Buffer buffer)
@@ -734,33 +726,25 @@ namespace Seed {
 				{
 					const std::string& name = decl.Name;
 					float value = *(float*)(uniformBuffer.GetBuffer() + decl.Offset);
-					SEED_RENDER_S2(name, value, {
-						self->UploadUniformFloat(name,value);
-						});
+					UploadUniformFloat(name,value);
 				}
 				case UniformType::Float3:
 				{
 					const std::string& name = decl.Name;
 					glm::vec3& values = *(glm::vec3*)(uniformBuffer.GetBuffer() + decl.Offset);
-					SEED_RENDER_S2(name, values, {
-						self->UploadUniformFloat3(name, values);
-						});
+					UploadUniformFloat3(name, values);
 				}
 				case UniformType::Float4:
 				{
 					const std::string& name = decl.Name;
 					glm::vec4& values = *(glm::vec4*)(uniformBuffer.GetBuffer() + decl.Offset);
-					SEED_RENDER_S2(name, values, {
-						self->UploadUniformFloat4(name,values);
-						});
+					UploadUniformFloat4(name,values);
 				}
 				case UniformType::Matrix4x4:
 				{
 					const std::string& name = decl.Name;
 					glm::mat4& values = *(glm::mat4*)(uniformBuffer.GetBuffer() + decl.Offset);
-					SEED_RENDER_S2(name, values, {
-						self->UploadUniformMat4(name, values);
-						});
+					UploadUniformMat4(name, values);
 				}
 			}
 		}
@@ -768,16 +752,12 @@ namespace Seed {
 
 	void OpenGLShader::SetFloat(const std::string& name, float value)
 	{
-		SEED_RENDER_S2(name, value, {
-			self->UploadUniformFloat(name, value);
-			});
+		UploadUniformFloat(name, value);
 	}
 
 	void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& value)
 	{
-		SEED_RENDER_S2(name, value, {
-			self->UploadUniformMat4(name, value);
-			});
+		UploadUniformMat4(name, value);
 	}
 
 	void OpenGLShader::SetMat4FromRenderThread(const std::string& name, const glm::mat4& value)

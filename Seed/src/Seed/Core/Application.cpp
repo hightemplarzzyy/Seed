@@ -22,6 +22,7 @@ namespace Seed {
 	{
 		SEED_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
+		APIType() = props.APIType;
 
 		m_Window = Scope<Window>(Window::Create(WindowProperties(props.name, props.WindowWidth, props.WindowHeight)));
 		m_Window->SetEventCallback(SEED_BIND_EVENT_FN(Application::OnEvent));
@@ -31,7 +32,6 @@ namespace Seed {
 		PushOverlay(m_ImGuiLayer);
 
 		Renderer::Init();
-		Renderer::Get().WaitAndRender();
 	}
 
 
@@ -94,9 +94,7 @@ namespace Seed {
 
 				// Render ImGui on render thread
 				Application* app = this;
-				SEED_RENDER_1(app, { app->RenderImGui(); });
-
-				Renderer::Get().WaitAndRender();
+				app->RenderImGui();
 
 				m_Window->OnUpdate();
 			}
