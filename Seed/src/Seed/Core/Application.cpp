@@ -2,6 +2,7 @@
 
 #include "Application.h"
 #include "Input.h"
+#include "Timer.h"
 
 #include "Seed/Renderer/Renderer.h"
 #include "Seed/Renderer/FrameBuffer.h"
@@ -99,7 +100,7 @@ namespace Seed {
 				m_Window->OnUpdate();
 			}
 
-			float time = GetTime();
+			float time = Timer::Get().GetTime();
 			m_TimeStep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 		}
@@ -153,9 +154,4 @@ namespace Seed {
 		return std::string();
 	}
 
-	// TODO: This should be in "Platform"
-	float Application::GetTime() const
-	{
-		return (float)glfwGetTime();
-	}
 }

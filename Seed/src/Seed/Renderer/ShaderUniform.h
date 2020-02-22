@@ -31,7 +31,6 @@ namespace Seed {
 		virtual void SetOffset(uint32_t offset) = 0;
 	};
 
-	//typedef std::vector<ShaderUniformDeclaration*> ShaderUniformList;
 	using ShaderUniformList = std::vector<ShaderUniformDeclaration*>;
 
 	class ShaderUniformBufferDeclaration

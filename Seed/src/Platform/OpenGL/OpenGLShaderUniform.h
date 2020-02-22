@@ -74,7 +74,7 @@ namespace Seed {
 		static std::string TypeToString(Type type);
 	};
 
-	struct GLShaderUniformField
+	struct OpenGLShaderUniformField
 	{
 		OpenGLShaderUniformDeclaration::Type type;
 		std::string name;

@@ -47,7 +47,6 @@ namespace Seed {
 			return s_APIType;
 		}
 
-		float GetTime() const; // TODO: This should be in "Platform"
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
