@@ -14,13 +14,14 @@ namespace Seed {
 	struct ApplicationProps
 	{
 		std::string name;
-		uint32_t WindowWidth, WindowHeight, APIType;
+		uint32_t WindowWidth, WindowHeight;
+		std::string RenderAPI, Platform;
 	};
 
 	class Application
 	{
 	public:
-		Application(const ApplicationProps& props = {"Seed Engine", 1280, 720, 1});
+		Application(const ApplicationProps& props = {"Seed Engine", 1280, 720, "OpenGL", "Windows"});
 		virtual ~Application();
 
 		void Run();
@@ -41,10 +42,9 @@ namespace Seed {
 
 		inline static Application& Get() { return *s_Instance; }
 
-		static uint32_t& APIType()
+		std::string& RenderAPIType()
 		{
-			static uint32_t s_APIType;
-			return s_APIType;
+			return m_Props.RenderAPI;
 		}
 
 	private:
@@ -57,6 +57,7 @@ namespace Seed {
 		LayerStack m_LayerStack;
 		ImGuiLayer* m_ImGuiLayer;
 		TimeStep m_TimeStep;
+		ApplicationProps m_Props;
 
 		float m_LastFrameTime = 0.0f;
 

@@ -9,14 +9,21 @@ namespace Seed {
 
 	 RendererAPI* RendererAPI::Create()
 	{
-		switch (Application::APIType())
+		if (Application::Get().RenderAPIType() == "OpenGL")
 		{
-			case 0:
-				SEED_CORE_ASSERT(false, "RendererAPI::None is currently not supported!");
-				return nullptr;
-			case 1:
-				RendererAPI::Current() = RendererAPIType::OpenGL;
-				return new OpenGLRendererAPI();
+			RendererAPI::Current() = RendererAPIType::OpenGL;
+			return new OpenGLRendererAPI();
+		}
+		else if (Application::Get().RenderAPIType() == "DX11")
+		{
+			// TODO: D3D11
+			RendererAPI::Current() = RendererAPIType::DX11;
+			// return new D3D11RendererAPI;
+		}
+		else
+		{
+			SEED_CORE_ASSERT(false, "RendererAPI::None is currently not supported!");
+			return nullptr;
 		}
 
 		SEED_CORE_ASSERT(false, "Unknown RendererAPI!");

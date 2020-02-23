@@ -1,29 +1,29 @@
 #include "Seedpch.h"
 
-#include "WindowsGLFWInput.h"
+#include "GLFWInput.h"
 #include "Seed/Core/Application.h"
 
 #include <GLFW/glfw3.h>
 
 namespace Seed {
 
-	Scope<Input> Input::s_Instance = CreateScope<WindowsGLFWInput>();
+	Scope<Input> Input::s_Instance = CreateScope<GLFWInput>();
 
-	bool WindowsGLFWInput::IsKeyPressedImpl(int keycode)
+	bool GLFWInput::IsKeyPressedImpl(int keycode)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		auto state = glfwGetKey(window, keycode);
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
 
-	bool WindowsGLFWInput::IsMouseButtonPressedImpl(int button)
+	bool GLFWInput::IsMouseButtonPressedImpl(int button)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		auto state = glfwGetMouseButton(window, button);
 		return state == GLFW_PRESS;
 	}
 
-	std::pair<float, float> WindowsGLFWInput::GetMousePositionImpl()
+	std::pair<float, float> GLFWInput::GetMousePositionImpl()
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		double xpos, ypos;
@@ -31,13 +31,13 @@ namespace Seed {
 		return { (float)xpos, (float)ypos };
 	}
 
-	float WindowsGLFWInput::GetMouseXImpl()
+	float GLFWInput::GetMouseXImpl()
 	{
 		auto[x, y] = GetMousePositionImpl();
 		return x;
 	}
 
-	float WindowsGLFWInput::GetMouseYImpl()
+	float GLFWInput::GetMouseYImpl()
 	{
 		auto[x, y] = GetMousePositionImpl();
 		return y;

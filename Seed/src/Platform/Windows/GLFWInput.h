@@ -4,7 +4,7 @@
 
 namespace Seed {
 
-	class WindowsGLFWInput :public Input
+	class GLFWInput :public Input
 	{
 	protected:
 		virtual bool IsKeyPressedImpl(int keycode) override;

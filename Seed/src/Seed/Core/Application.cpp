@@ -19,13 +19,12 @@ namespace Seed {
 
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application(const ApplicationProps& props)
+	Application::Application(const ApplicationProps& props) : m_Props(props)
 	{
 		SEED_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
-		APIType() = props.APIType;
 
-		m_Window = Scope<Window>(Window::Create(WindowProperties(props.name, props.WindowWidth, props.WindowHeight)));
+		m_Window = Scope<Window>(Window::Create(WindowProperties(m_Props.name, m_Props.WindowWidth, m_Props.WindowHeight)));
 		m_Window->SetEventCallback(SEED_BIND_EVENT_FN(Application::OnEvent));
 		m_Window->SetVSync(false);
 
